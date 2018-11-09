@@ -8,55 +8,64 @@ var readline = require('readline-sync');
 let control : Controller = new Controller();
 
 let status:boolean = true;
+console.log("Comando = Função\naU = adicionar usuário\nvU = ver usuários\naG = adcionar grupo\nvG = ver grupo\naPG = adicionar pessoa ao grupo\nrPG = remover pessoa do grupo\neM = enviar mensagem\nvM = ver mensagem\nexit = sair\n");
 while (status) {
     let comando:string = readline.question("Digite o comando: ");
-
+    
     switch (comando) {
-        case "addUser":     
+        case "aU":     
             let nomeUser:string = readline.question("Nome do Usuario: ");           
-            control.cadUser(nomeUser);
+            console.log(control.cadUser(nomeUser));
         break;
 
-        case "addGrupo":
+        case "vU":
+            console.log(control.verUsers());
+        break;
+
+        case "aG":
             let nomeGrupo:string = readline.question("Nome do Grupo: ");
             let nomeUserGrupo:string = readline.question("Nome do Usuario: ");
             console.log(control.addGrupo(nomeGrupo,nomeUserGrupo));
         break;
             
-        case "verGrupo":
+        case "vG":
             let nomeGrupoBusca:string = readline.question("Nome do Grupo: ");
-            console.log(control.buscarGrupo(nomeGrupoBusca));
+            console.log(control.verGrupo(nomeGrupoBusca));
         break;
-        /*
-            case "addPessoaGrupo":
-                if(chats.length>0){
-                    let nomeGrupoAdd :string = readline.question("Nome do grupo: ");
-                    let nomePessoaAdd:string = readline.question("Nome da pessoa: ");
-                    for(let i of chats){
-                        if(i.getNome() == nomeGrupoAdd){
-                            for(let x of users){
-                                if(x.getNome() == nomePessoaAdd){
-                                    for(let y of i.getPessoas()){
-                                        if(y.getNome() != x.getNome()){
-                                            i.addPessoa(x);
-                                            x.addChat(i);
-                                        }else{
-                                            console.log("Usuario já cadastrado");
-                                        }
-                                    }
-                                }else{
-                                    console.log("Usuario não existente");
-                                }
-                            }
-                        }else{
-                            console.log("Grupo não existe");
-                        }
-                    }
-                }
-            break;
-    
-    */
-            default:
-                break;
+
+        case "aPG":
+            let nomeGrupoAdd :string = readline.question("Nome do grupo: ");
+            let nomePessoaAdd:string = readline.question("Nome da pessoa: ");
+            console.log(control.addPessoaGrupo(nomeGrupoAdd,nomePessoaAdd));
+        break;
+
+        case "rPG":
+            let grupoRemove:string = readline.question("Nome do grupo: ");
+            let nomeRemove:string = readline.question("Nome da pessoa: ");
+            console.log(control.removePessoaGrupo(nomeRemove,grupoRemove));
+        break;
+        
+        case "eM":
+            let nomeMsg:string = readline.question("Nome da pessoa: ");
+            let grupoMsg:string = readline.question("Nome do Grupo: ");
+            let msg:string = readline.question("Mensagem: ")
+            console.log(control.enviarMsg(msg,nomeMsg,grupoMsg));
+        break;
+
+        
+        case "vM":
+            let nomeMsgB:string =readline.question("Nome da Pessoa: ");
+            let grupoMsgB:string =readline.question("Nome do grupo: ");
+            console.log(control.verMsg(nomeMsgB,grupoMsgB));
+        break;
+
+        case "vV":
+            console.log(control.verVisual());
+        
+        case "exit":
+        status = false;
+        break;
+        default:
+        break;
         }
     }

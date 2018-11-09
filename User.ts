@@ -20,6 +20,7 @@ export class User{
     public setChats(chats: Chat[]):void{
         this.chats = chats;
     }
+
     public addChat(chat: Chat){
         this.chats.push(chat);
     }
