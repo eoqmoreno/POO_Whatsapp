@@ -72,25 +72,19 @@ export class Chat{
         if(this.msgs.length>0){
             let msgss:string = "";
             for(let i of this.msgs){
-                msgss += i.getMsg()
-                i.visualizou(nome);
-            }
-            return msgss;
-        }else{
+                    if(i.verVisualizacao(nome) == 1){
+                        msgss += i.getMsg() + "\n";
+                        i.visualizou(nome);
+                    }
+                }
+                if(msgss==""){
+                   return "Nenhuma mensagem" 
+                }
+                return msgss;
+            }else{
             return "Vazio";
         }
     }
-
-    public verVis():string{
-        if(this.msgs.length>0){
-            for(let i of this.msgs){
-                return "oia";
-            }
-        }else{
-            return "Vazio";
-        }
-    }
-    
 
     public addMsg(msg:Msg):void{
         this.msgs.push(msg);

@@ -26,13 +26,17 @@ export class Msg{
     public visualizou(nome:User){
         this.visualizacoes.push(nome);
     }
-    /*
-    public verVisualizacao():string{
+
+    public verVisualizacao(user:User):number{
         if(this.visualizacoes.length>0){
-            return this.visualizacoes;
+            for(let i of this.visualizacoes){
+                if(i == user){
+                    return 0;
+                }
+            }
+            return 1;
         }else{
-            return "Vazio";
+            return 2;
         }
     }
-    */  
 }

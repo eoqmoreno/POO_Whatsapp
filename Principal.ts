@@ -7,8 +7,12 @@ var readline = require('readline-sync');
 
 let control : Controller = new Controller();
 
+function menu(){
+    console.log("Comando = Função\naU = adicionar usuário\nvU = ver usuários\naG = adcionar grupo\nvG = ver grupo\naPG = adicionar pessoa ao grupo\nrPG = remover pessoa do grupo\neM = enviar mensagem\nvM = ver mensagem\nexit = sair\nmenu = ver menu\n");
+}
+
 let status:boolean = true;
-console.log("Comando = Função\naU = adicionar usuário\nvU = ver usuários\naG = adcionar grupo\nvG = ver grupo\naPG = adicionar pessoa ao grupo\nrPG = remover pessoa do grupo\neM = enviar mensagem\nvM = ver mensagem\nexit = sair\n");
+menu();
 while (status) {
     let comando:string = readline.question("Digite o comando: ");
     
@@ -58,13 +62,15 @@ while (status) {
             let grupoMsgB:string =readline.question("Nome do grupo: ");
             console.log(control.verMsg(nomeMsgB,grupoMsgB));
         break;
-
-        case "vV":
-            console.log(control.verVisual());
         
         case "exit":
-        status = false;
+            status = false;
+            break;
+        
+        case "menu":
+            menu();
         break;
+        
         default:
         break;
         }

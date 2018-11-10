@@ -131,17 +131,14 @@ export class Controller {
 
     public verMsg(nome:string, grupo:string):string{
         if(this.buscarGrupo(grupo)!=undefined){
-            if(this.buscarGrupo(grupo).buscarUser(nome)!=undefined){
-                return this.buscarGrupo(grupo).verMsgs(this.buscarGrupo(grupo).buscarUser(nome));
+            let g:Chat = this.buscarGrupo(grupo);
+            if(g.buscarUser(nome)!=undefined){
+                return g.verMsgs(g.buscarUser(nome));
+            }else{
+                return "Pessoa não cadastrada";
             }
         }else{
             return "Grupo não encontrado"
-        }
-    }
-
-    public verVisual(){
-        if(this.chats.length>0){
-            return this.chats[0].verVis();
         }
     }
 
